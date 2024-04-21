@@ -1,0 +1,42 @@
+{
+    "source_type": "s3",
+    "source_configuration": {
+        "bucket": "private-ccd-zone",
+        "suffix": "optum-gap-tracker"
+    },
+    "destination_type": "s3",
+    "destination_configuration": {
+        "bucket": "private-ccd-zone",
+        "suffix": "pre-processed-ogt"
+    },
+    "post-processing": {
+        "bucket": "clean-ccd-zone"
+    },
+    "secrets_manager": {
+        "gpg": {
+            "secret_name": "eventus-private-key",
+            "region_name": "us-east-2"
+        },
+        "rds": {
+            "secret_name": "dev/rds",
+            "region_name": "us-east-2"
+        }
+    },
+    "rds": {
+        "schema_name": "public",
+        "risk_gaps_table_name": "open_risk_gaps",
+        "codex_table_name": "codex_files"
+    },
+    "client": "eventus-whole-health",
+    "year": "2023",
+    "month": "11",
+    "gaptracker_filename": "eData -OCTOBER Gap Tracker - Eventus WholeHealth 10.30.2023 .xlsx",
+    "opengaps_sheetname": "New Open Gaps",
+    "midyear_final_bucket": "master-ccd-pipeline",
+    "midyear_final_prefix": "",
+    "midyear_final_filename": "2023 Midyear_Final ICD-10-CM Mappings.csv",
+    "midyear_final_column_names": [
+        "Diagnosis\nCode",
+        "CMS-HCC\nModel\nCategory\nV24"
+    ]
+}
